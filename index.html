@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Chat UI</title>
+<style>
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        display: flex;
+        height: 100vh;
+        background-color: #f0f2f5;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 300px;
+        background: linear-gradient(180deg, #6a11cb, #2575fc);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #ddd;
+    }
+
+    .sidebar header {
+        padding: 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .contacts {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .contact {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .contact:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .contact img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+        border: 2px solid #fff;
+    }
+
+    .contact span {
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    /* Chat area */
+    .chat {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-header {
+        padding: 20px;
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .chat-header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .chat-messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background: #e5ddd5;
+    }
+
+    .message {
+        max-width: 60%;
+        padding: 12px 18px;
+        margin-bottom: 12px;
+        border-radius: 25px;
+        position: relative;
+        clear: both;
+        font-size: 0.95em;
+        line-height: 1.4;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        word-wrap: break-word;
+    }
+
+    .message.sent {
+        background: linear-gradient(145deg, #00c6ff, #0072ff);
+        color: #fff;
+        margin-left: auto;
+        border-bottom-right-radius: 5px;
+    }
+
+    .message.received {
+        background: #fff;
+        margin-right: auto;
+        border-bottom-left-radius: 5px;
+    }
+
+    /* Message input */
+    .chat-input {
+        display: flex;
+        padding: 15px 20px;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 12px 20px;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        outline: none;
+        font-size: 1em;
+    }
+
+    .chat-input button {
+        padding: 12px 25px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 25px;
+        background: linear-gradient(145deg, #00c6ff, #0072ff);
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+        background: linear-gradient(145deg, #0072ff, #00c6ff);
+    }
+
+    /* Scrollbar styling */
+    .contacts::-webkit-scrollbar,
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .contacts::-webkit-scrollbar-thumb,
+    .chat-messages::-webkit-scrollbar-thumb {
+        background-color: rgba(0,0,0,0.2);
+        border-radius: 3px;
+    }
+
+    .contacts::-webkit-scrollbar-track,
+    .chat-messages::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <header>Chats</header>
+    <div class="contacts">
+        <div class="contact">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+            <span>John Doe</span>
+        </div>
+        <div class="contact">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+            <span>Jane Smith</span>
+        </div>
+        <div class="contact">
+            <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="User">
+            <span>Mike Johnson</span>
+        </div>
+        <div class="contact">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User">
+            <span>Emily Davis</span>
+        </div>
+        <div class="contact">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User">
+            <span>Robert Brown</span>
+        </div>
+    </div>
+</div>
+
+<div class="chat">
+    <div class="chat-header">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+        <span>John Doe</span>
+    </div>
+    <div class="chat-messages">
+        <div class="message received">Hey! How are you?</div>
+        <div class="message sent">I'm good, thanks! How about you?</div>
+        <div class="message received">Doing well, just working on a project.</div>
+        <div class="message sent">That's awesome! Need any help?</div>
+        <div class="message received">Maybe later, thanks!</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" placeholder="Type a message...">
+        <button>Send</button>
+    </div>
+</div>
+
+</body>
+</html>
+ 
